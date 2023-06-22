@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
-import { NewTodoForm } from "./NewTodoForm";
-import { TodoList } from "./TodoList";
+import { NewToDoForm } from "./NewToDoForm";
+import { ToDoList } from "./ToDoList";
 
 export default function App() {
 
-  const [todos, setTodos] = useState(() => {
+  const [todos, setToDos] = useState(() => {
     const localValue = localStorage.getItem("ITEMS")
     if (localValue == null) return []
     return JSON.parse(localValue)
@@ -15,38 +15,38 @@ export default function App() {
     localStorage.setItem("ITEMS", JSON.stringify(todos))
   }, [todos])
 
-  function addTodo(title) {
-    setTodos(currentTodos => {
+  function addToDo(title) {
+    setToDos(currentToDos => {
       return [
-        ...currentTodos,
+        ...currentToDos,
         { id: crypto.randomUUID(), title, completed: false },
       ]
     })
   }
 
-  function toggleTodo(id, completed) {
-    setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if (todo.id === id) {
-          return { ...todo, completed }
+  function toggleToDo(id, completed) {
+    setToDos(currentToDos => {
+      return currentToDos.map(toDo => {
+        if (toDo.id === id) {
+          return { ...toDo, completed }
         }
 
-        return todo
+        return toDo
       })
     })
   }
 
-  function deleteTodo(id) {
-    setTodos(currentTodos => {
-      return currentTodos.filter(todo => todo.id !== id)
+  function deleteToDo(id) {
+    setToDos(currentToDos => {
+      return currentToDos.filter(toDo => toDo.id !== id)
     })
   }
 
   return (
     <>
-      <NewTodoForm onSubmit={addTodo} />
-      <h1 className="header">Todo List</h1>
-      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      <NewToDoForm onSubmit={addToDo} />
+      <h1 className="header">To Do List</h1>
+      <ToDoList todos={todos} toggleToDo={toggleToDo} deleteToDo={deleteToDo} />
     </>
   );
 }
