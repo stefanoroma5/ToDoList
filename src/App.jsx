@@ -12,7 +12,7 @@ export default function App() {
   })
 
   useEffect(() => {
-    localStorage.setItem("ITEM", JSON.stringify(todos))
+    localStorage.setItem("ITEMS", JSON.stringify(todos))
   }, [todos])
 
   function addTodo(title) {
