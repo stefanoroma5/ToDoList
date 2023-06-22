@@ -4,7 +4,7 @@ export function ToDoList({ todos, toggleToDo, deleteToDo }) {
 
     return (
         <ul className="list">
-            {todos.length === 0 && "No ToDos"}
+            {todos.length === 0 && "Nothing to do"}
             {todos.map(toDo => {
                 return (
                     <ToDoItem
